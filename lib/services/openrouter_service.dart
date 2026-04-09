@@ -58,7 +58,16 @@ Focus on understanding their exact problem and giving tailored solutions, not ge
           'temperature': 0.7,
         }),
       );
+bool isCyberQuery(String text) {
+  final keywords = [
+    'fraud','scam','hacked','phishing','otp','bank','upi',
+    'password','virus','malware','account','money','fake',
+    'loan','job','lottery','payment','link','email','message'
+  ];
+  text = text.toLowerCase();
 
+  return keywords.any((keyword) => text.contains(keyword));
+}
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         final aiResponse = data['choices'][0]['message']['content'];

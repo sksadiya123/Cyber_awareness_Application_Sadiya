@@ -151,12 +151,7 @@ class _LandingPageState extends State<LandingPage> with TickerProviderStateMixin
                           height: 55,
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => AuthPage(),
-                                ),
-                              );
+                            Navigator.pushReplacementNamed(context, '/auth');
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,

@@ -1,111 +1,63 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
+// 🔥 Import your screens
+import 'screens/smart_welcome_screen.dart';
+import 'screens/feature_intro_screen.dart';
+import 'screens/language_select_screen.dart';
+import 'screens/landing_page.dart';
+import 'screens/auth_page.dart';
 import 'screens/home_screen.dart';
 import 'screens/education_screen.dart';
 import 'screens/ai_help_screen.dart';
-import 'services/bookmark_service.dart';
-import 'screens/landing_page.dart';
-import 'screens/auth_page.dart';
-import 'services/auth_service.dart';
+import 'screens/scam_simulation_screen.dart';
+import 'screens/scam_alerts_screen.dart';
+import 'screens/emergency_screen.dart';
+import 'screens/profile_screen.dart';
+
 void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => BookmarkService(),
-      child: MaterialApp(
-        title: 'CyberSafe Community',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          appBarTheme: AppBarTheme(
-            backgroundColor: Colors.blue[800],
-            foregroundColor: Colors.white,
-            elevation: 2,
-          ),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            selectedItemColor: Colors.blue[800],
-            unselectedItemColor: Colors.grey,
-          ),
-        ),
-        home: MainScreen(),
-        debugShowCheckedModeBanner: false,
-      ),
-    );
-  }
-}
-
-
-class AuthChecker extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<bool>(
-      future: AuthService.isUserLoggedIn(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(
-                color: Colors.blue[800],
-              ),
-            ),
-          );
-        }
-        
-        if (snapshot.data == true) {
-          return MainScreen();
-        } else {
-          return LandingPage();
-        }
-      },
-    );
-  }
-}
-
-class MainScreen extends StatefulWidget {
-  @override
-  _MainScreenState createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
-  int _selectedIndex = 0;
-  
-  final List<Widget> _screens = [
-    HomeScreen(),
-    EducationScreen(),
-    AIHelpScreen(),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  // 🔥 ERROR UI FIX (no red screen)
+  ErrorWidget.builder = (FlutterErrorDetails details) {
     return Scaffold(
-      body: _screens[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'Learn',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.help),
-            label: 'Get Help',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+      backgroundColor: Color(0xFF0A0E1A),
+      body: Center(
+        child: Text(
+          "Something went wrong",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
+    );
+  };
+
+  runApp(CyberSurakshaApp());
+}
+
+// 🔥 MAIN APP
+class CyberSurakshaApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: Color(0xFF0A0E1A),
+      ),
+
+      initialRoute: '/welcome',
+
+      routes: {
+        '/welcome': (_) => SmartWelcomeScreen(),
+        '/intro': (_) => FeatureIntroScreen(),
+        '/language': (_) => LanguageSelectScreen(),
+        '/landing': (_) => LandingPage(),
+        '/auth': (_) => AuthPage(),
+        '/home': (_) => HomeScreen(),
+        '/education': (_) => EducationScreen(),
+        '/ai': (_) => AIHelpScreen(),
+        '/simulation': (_) => ScamSimulationScreen(),
+        '/alerts': (_) => ScamAlertsScreen(),
+        '/emergency': (_) => EmergencyScreen(),
+        '/profile': (_) => ProfileScreen(),
+      },
     );
   }
 }

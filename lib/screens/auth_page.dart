@@ -90,10 +90,7 @@ class _AuthPageState extends State<AuthPage> with TickerProviderStateMixin {
       _showMessage(result['message'], false);
       
       if (_isSignIn) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => MainScreen()),
-        );
+       Navigator.pushReplacementNamed(context, '/home');
       } else {
         Future.delayed(Duration(seconds: 1), () {
           setState(() {

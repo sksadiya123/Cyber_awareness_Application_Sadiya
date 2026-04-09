@@ -80,13 +80,64 @@ class _AIHelpScreenState extends State<AIHelpScreen> {
 
   bool _isCybersecurityRelated(String message) {
     final cybersecurityKeywords = [
-      'fraud', 'scam', 'hacked', 'phishing', 'identity theft', 
-      'cybercrime', 'password', 'security', 'virus', 'malware',
-      'stolen', 'suspicious', 'fake email', 'credit card', 'bank',
-      'account', 'personal information', 'social media', 'online',
-      'internet', 'website', 'app', 'download', 'link', 'attachment',
-      'money', 'payment', 'transaction', 'unauthorized', 'breach',
-      'privacy', 'data', 'information', 'profile', 'login', 'access'
+  // 🔐 General Cybercrime
+  'fraud', 'scam', 'cybercrime', 'hacked', 'hacking', 'attack',
+  'phishing', 'spoofing', 'identity theft', 'impersonation',
+
+  // 💳 Banking & Money
+  'bank', 'credit card', 'debit card', 'upi', 'transaction',
+  'payment', 'money', 'refund', 'cashback', 'loan',
+  'otp', 'pin', 'cvv', 'ifsc', 'account number',
+
+  // 📱 Mobile & Apps
+  'mobile', 'app', 'apk', 'download', 'install',
+  'unknown app', 'fake app', 'loan app', 'spy app',
+
+  // 🌐 Internet & Links
+  'website', 'fake website', 'link', 'url', 'short link',
+  'attachment', 'email link', 'sms link',
+
+  // 📧 Email & Messages
+  'email', 'fake email', 'spam', 'sms', 'whatsapp',
+  'telegram', 'message', 'notification',
+
+  // 🔑 Security
+  'password', 'login', 'username', 'access',
+  'two factor', '2fa', 'security', 'verification',
+
+  // 🦠 Malware & Virus
+  'virus', 'malware', 'trojan', 'spyware', 'ransomware',
+  'keylogger', 'infected', 'hack tool',
+
+  // 🕵️ Suspicious Activity
+  'suspicious', 'unknown', 'unauthorized',
+  'breach', 'leak', 'data leak', 'data breach',
+
+  // 👤 Personal Data
+  'personal information', 'data', 'profile',
+  'aadhaar', 'pan', 'id proof', 'documents',
+
+  // 📞 Calls & Social Engineering
+  'call', 'fake call', 'customer care',
+  'support', 'agent', 'bank call', 'telecaller',
+
+  // 🛒 Online Shopping
+  'shopping', 'offer', 'discount', 'sale',
+  'fake product', 'delivery scam',
+
+  // 💔 Social Media
+  'facebook', 'instagram', 'account hacked',
+  'fake profile', 'dm', 'message request',
+
+  // 🎯 Common Scams
+  'lottery', 'prize', 'win money',
+  'job offer', 'job scam', 'work from home',
+  'investment', 'crypto', 'trading scam',
+
+  // ⚠ Emergency
+  'help', 'stolen', 'lost', 'complaint',
+  'report', 'cyber police'
+
     ];
     
     final lowerMessage = message.toLowerCase();

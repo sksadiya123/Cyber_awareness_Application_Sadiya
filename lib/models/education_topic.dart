@@ -5,7 +5,11 @@ class EducationTopic {
   final String title;
   final String subtitle;
   final IconData icon;
-  final String content;
+
+  final String contentEn;
+  final String contentHi;
+  final String contentTe;
+
   final List<QuizQuestion> quiz;
 
   EducationTopic({
@@ -13,7 +17,9 @@ class EducationTopic {
     required this.title,
     required this.subtitle,
     required this.icon,
-    required this.content,
+    required this.contentEn,
+    required this.contentHi,
+    required this.contentTe,
     required this.quiz,
   });
 }
